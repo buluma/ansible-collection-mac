@@ -62,4 +62,4 @@ Apache-2.0
 ## Author Information
 This role was created in 2022 by [Michael Buluma](https://buluma.github.io)
 
-The contents of this role were originally created by [Michael Buluma](https://www.jeffgeerling.com/), author of [Ansible for DevOps](https://www.ansiblefordevops.com/).
+The contents of this role were originally created by [Michael Buluma](https://buluma.github.io/).

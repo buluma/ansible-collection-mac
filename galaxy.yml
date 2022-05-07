@@ -41,7 +41,7 @@ dependencies:
 
 repository: https://github.com/buluma/ansible-collection-mac
 documentation: https://github.com/buluma/ansible-collection-mac
-homepage: https://www.jeffgeerling.com
+homepage: https://buluma.github.io
 issues: https://github.com/buluma/ansible-collection-mac/issues
 
 build_ignore: []

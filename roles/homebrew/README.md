@@ -116,15 +116,14 @@ Ansible's `local` connection. See also:
 
 ## Author Information
 
-This role was created in 2014 by [Michael Buluma][author-website], author of
-[Ansible for DevOps][ansible-for-devops].
+This role was created in 2022 by [Michael Buluma][author-website].
 
 #### Maintainer(s)
 
 - [Michael Buluma](https://github.com/buluma)
 
 [ansible-for-devops]: https://www.ansiblefordevops.com/
-[author-website]: https://www.jeffgeerling.com/
+[author-website]: https://buluma.github.io/
 [caskroom]: https://caskroom.github.io/search
 [homebrew]: http://brew.sh/
 [dep-osx-clt-role]: https://galaxy.ansible.com/elliotweiser/osx-command-line-tools/
