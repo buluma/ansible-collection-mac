@@ -1,0 +1,47 @@
+---
+namespace: buluma
+name: mac
+version: "1.0.0"
+readme: README.md
+
+authors:
+  - buluma
+
+description: Collection of macOS automation tools for Ansible.
+
+# Either a single license or a list of licenses for content inside of a collection. Ansible Galaxy currently only
+# accepts L(SPDX,https://spdx.org/licenses/) licenses. This key is mutually exclusive with 'license_file'
+license:
+  - Apache-2.0
+
+# A list of tags you want to associate with the collection for indexing/searching. A tag name has the same character
+# requirements as 'namespace' and 'name'
+tags:
+  - mac
+  - macos
+  - osx
+  - homebrew
+  - brew
+  - workstation
+  - dev
+  - mas
+  - appstore
+  - apps
+  - configure
+  - development
+  - apple
+  - ios
+  - macbook
+  - imac
+  - macmini
+  - server
+
+dependencies:
+  community.general: ">=3.0.0"
+
+repository: https://github.com/buluma/ansible-collection-mac
+documentation: https://github.com/buluma/ansible-collection-mac
+homepage: https://www.jeffgeerling.com
+issues: https://github.com/buluma/ansible-collection-mac/issues
+
+build_ignore: []
