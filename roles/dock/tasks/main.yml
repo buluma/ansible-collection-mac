@@ -4,7 +4,7 @@
     name: dockutil
     state: present
   notify:
-    - Clear homebrew cache
+    - clear homebrew cache
 
 - name: remove configured Dock items.
   ansible.builtin.include_tasks: dock-remove.yml
