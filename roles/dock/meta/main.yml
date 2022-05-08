@@ -1,0 +1,24 @@
+---
+dependencies: []
+
+galaxy_info:
+  role_name: dock
+  author: buluma
+  description: Dock installation for macOS
+  company: ShadowNet
+  license: "license (Apache-2.0)"
+  min_ansible_version: 2.10
+  platforms:
+    - name: GenericUNIX
+      versions:
+        - all
+        - any
+  galaxy_tags:
+    - development
+    - system
+    - packaging
+    - mas
+    - mac
+    - app
+    - store
+    - macos
