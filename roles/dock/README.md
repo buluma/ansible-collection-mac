@@ -22,6 +22,18 @@ dockitems_persist: []
 
 Dock items to add. `pos` parameter is optional and will place the Dock item in a particular position in the Dock.
 
+```yaml
+dockutil_homebrew_cask: hpedrorodrigues/tools/dockutil
+```
+
+Which Homebrew cask to install for dockutil. See [this issue](https://github.com/kcrawford/dockutil/issues/127) to read more about why this cask is the default.
+
+```yaml
+dockutil_install: true
+```
+
+Whether to install dockutil or not. If set to false you'll need to have installed dockutil prior to the execution of this role. See [this issue](https://github.com/buluma/ansible-collection-mac/issues/42) for alternate installation methods, which may be necessary depending on your version of macOS.
+
 ## Dependencies
 
   - (Soft dependency) `buluma.homebrew`
@@ -60,6 +72,7 @@ See the [Mac Development Ansible Playbook](https://github.com/buluma/mac-dev-pla
 Apache-2.0
 
 ## Author Information
+
 This role was created in 2022 by [Michael Buluma](https://buluma.github.io)
 
-The contents of this role were originally created by [Michael Buluma](https://buluma.github.io/).
+The contents of this role were originally created by [@dspolleke](https://github.com/dspolleke) as part of the [`mac-dev-playbook`](https://github.com/buluma/mac-dev-playbook).
