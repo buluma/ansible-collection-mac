@@ -1,8 +1,8 @@
 ---
 # handlers for ansible-role-homebrew
 
-- name: clear homebrew cache
-  ansible.builtin.file:
+- name: Clear homebrew cache
+  file:
     path: "{{ homebrew_cache_path.stdout | trim }}"
     state: absent
   when: 'homebrew_clear_cache | bool'
