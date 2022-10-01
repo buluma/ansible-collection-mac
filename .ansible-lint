@@ -3,3 +3,4 @@ skip_list:
   - yaml
   - fqcn-builtins
   - jinja
+  - name
