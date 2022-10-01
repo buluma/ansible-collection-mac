@@ -1,5 +1,5 @@
 ---
-- name: "check if Dock item {{ item.name | default(item) }} exists."
+- name: "Check if Dock item {{ item.name | default(item) }} exists."
   ansible.builtin.command: "dockutil --find '{{ item.name }}'"
   register: dockitem_exists
   failed_when: >
@@ -8,12 +8,12 @@
   changed_when: false
   tags: ['dock']
 
-- name: ensure Dock item {{ item.name | default(item) }} exists.
+- name: Ensure Dock item {{ item.name | default(item) }} exists.
   ansible.builtin.command: "dockutil --add '{{ item.path }}'"
   when: dockitem_exists.rc >0
   tags: ['dock']
 
-- name: pause for 7 seconds between dock changes.
+- name: Pause for 7 seconds between dock changes.
   ansible.builtin.pause:
     seconds: 7
   when: dockitem_exists.rc >0

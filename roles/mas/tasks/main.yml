@@ -1,15 +1,15 @@
 ---
-- name: ensure MAS is installed.
+- name: Ensure MAS is installed.
   homebrew: name=mas state=present
 
-- name: get MAS account status
+- name: Get MAS account status
   command: mas account
   register: mas_account_result
   failed_when: mas_account_result.rc > 1
   check_mode: false
   changed_when: false
 
-- name: sign in to MAS when email and password are provided.
+- name: Sign in to MAS when email and password are provided.
   command: 'mas signin "{{ mas_email }}" "{{ mas_password }}"'
   register: mas_signin_result
   when:
@@ -18,7 +18,7 @@
     - mas_password is truthy
     - not mas_signin_dialog
 
-- name: sign in to MAS when email is provided, and complete password and 2FA using dialog.
+- name: Sign in to MAS when email is provided, and complete password and 2FA using dialog.
   command: 'mas signin "{{ mas_email }}" "{{ mas_password }}" --dialog'
   register: mas_signin_result
   when:
@@ -26,22 +26,22 @@
     - mas_account_result.rc == 1
     - mas_email is truthy
 
-- name: list installed MAS apps.
+- name: List installed MAS apps.
   command: mas list
   register: mas_list
   check_mode: false
   changed_when: false
 
-- name: ensure unwanted MAS apps are uninstalled.
+- name: Ensure unwanted MAS apps are uninstalled.
   command: mas uninstall "{{ item.id|default(item) }}"
   with_items: "{{ mas_uninstalled_apps }}"
   when: (item.id | default(item) | string) in mas_list.stdout
 
-- name: ensure configured MAS apps are installed.
+- name: Ensure configured MAS apps are installed.
   command: mas install "{{ item.id|default(item) }}"
   with_items: "{{ mas_installed_apps + mas_installed_app_ids }}"
   when: (item.id | default(item) | string) not in mas_list.stdout
 
-- name: upgrade all apps (if configured).
+- name: Upgrade all apps (if configured).
   command: mas upgrade
   when: mas_upgrade_all_apps

@@ -1,11 +1,11 @@
 ---
-- name: determine Homebrew ownership variables
+- name: Determine Homebrew ownership variables
   ansible.builtin.set_fact:
     homebrew_user: '{{ homebrew_user | default(ansible_user_id) }}'
     homebrew_group: '{{ homebrew_group | default(ansible_user_gid) }}'
 
 # Homebrew setup prerequisites.
-- name: ensure Homebrew parent directory has correct permissions (M1).
+- name: Ensure Homebrew parent directory has correct permissions (M1).
   ansible.builtin.file:
     path: "{{ homebrew_prefix }}"
     owner: "{{ homebrew_user }}"
@@ -13,9 +13,9 @@
   become: true
   when: ansible_machine == 'arm64'
 
-- name: ensure Homebrew parent directory has correct permissions (Intel).
+- name: Ensure Homebrew parent directory has correct permissions (Intel).
   block:
-    - name: ensure Homebrew parent directory has correct permissions (MacOS >= 10.13).
+    - name: Ensure Homebrew parent directory has correct permissions (MacOS >= 10.13).
       ansible.builtin.file:
         path: "{{ homebrew_prefix }}"
         owner: root
@@ -23,7 +23,7 @@
       become: true
       when: "ansible_distribution_version is version('10.13', '>=')"
 
-    - name: ensure Homebrew parent directory has correct permissions (MacOS < 10.13).
+    - name: Ensure Homebrew parent directory has correct permissions (MacOS < 10.13).
       ansible.builtin.file:
         path: "{{ homebrew_prefix }}"
         owner: root
@@ -34,7 +34,7 @@
       when: "ansible_distribution_version is version('10.13', '<')"
   when: ansible_machine == 'x86_64'
 
-- name: ensure Homebrew directory exists.
+- name: Ensure Homebrew directory exists.
   ansible.builtin.file:
     path: "{{ homebrew_install_path }}"
     owner: "{{ homebrew_user }}"
@@ -44,7 +44,7 @@
   become: true
 
 # Clone Homebrew.
-- name: ensure Homebrew is installed.
+- name: Ensure Homebrew is installed.
   ansible.builtin.git:
     repo: "{{ homebrew_repo }}"
     version: master
@@ -55,7 +55,7 @@
   become_user: "{{ homebrew_user }}"
 
 # Adjust Homebrew permissions.
-- name: ensure proper permissions and ownership on homebrew_brew_bin_path dirs.
+- name: Ensure proper permissions and ownership on homebrew_brew_bin_path dirs.
   ansible.builtin.file:
     path: "{{ homebrew_brew_bin_path }}"
     state: directory
@@ -64,7 +64,7 @@
     mode: 0775
   become: true
 
-- name: ensure proper ownership on homebrew_install_path subdirs.
+- name: Ensure proper ownership on homebrew_install_path subdirs.
   ansible.builtin.file:
     path: "{{ homebrew_install_path }}"
     state: directory
@@ -74,12 +74,12 @@
   become: true
 
 # Place brew binary in proper location and complete setup.
-- name: check if homebrew binary is already in place.
+- name: Check if homebrew binary is already in place.
   stat: "path={{ homebrew_brew_bin_path }}/brew"
   register: homebrew_binary
   check_mode: false
 
-- name: symlink brew to homebrew_brew_bin_path.
+- name: Symlink brew to homebrew_brew_bin_path.
   ansible.builtin.file:
     src: "{{ homebrew_install_path }}/bin/brew"
     dest: "{{ homebrew_brew_bin_path }}/brew"
@@ -87,7 +87,7 @@
   when: not homebrew_binary.stat.exists
   become: true
 
-- name: ensure proper homebrew folders are in place.
+- name: Ensure proper homebrew folders are in place.
   ansible.builtin.file:
     path: "{{ homebrew_prefix }}/{{ item }}"
     state: directory
@@ -109,7 +109,7 @@
       check_mode: false
 
     # Tap.
-    - name: ensure configured taps are tapped.
+    - name: Ensure configured taps are tapped.
       community.general.homebrew_tap:
         tap: '{{ item.name | default(item) }}'
         url: '{{ item.url | default(omit) }}'
@@ -117,11 +117,11 @@
       loop: "{{ homebrew_taps }}"
 
     # Cask.
-    - name: ensure blacklisted cask applications are not installed.
+    - name: Ensure blacklisted cask applications are not installed.
       homebrew_cask: "name={{ item }} state=absent"
       loop: "{{ homebrew_cask_uninstalled_apps }}"
 
-    - name: install configured cask applications.
+    - name: Install configured cask applications.
       community.general.homebrew_cask:
         name: "{{ item.name | default(item) }}"
         state: present
@@ -133,11 +133,11 @@
         - Clear homebrew cache
 
     # Brew.
-    - name: ensure blacklisted homebrew packages are not installed.
+    - name: Ensure blacklisted homebrew packages are not installed.
       homebrew: "name={{ item }} state=absent"
       loop: "{{ homebrew_uninstalled_packages }}"
 
-    - name: ensure configured homebrew packages are installed.
+    - name: Ensure configured homebrew packages are installed.
       community.general.homebrew:
         name: "{{ item.name | default(item) }}"
         install_options: "{{ item.install_options | default(omit) }}"
@@ -146,13 +146,13 @@
       notify:
         - Clear homebrew cache
 
-    - name: upgrade all homebrew packages (if configured).
+    - name: Upgrade all homebrew packages (if configured).
       homebrew: update_homebrew=yes upgrade_all=yes
       when: homebrew_upgrade_all_packages
       notify:
         - Clear homebrew cache
 
-    - name: check for Brewfile.
+    - name: Check for Brewfile.
       ansible.builtin.stat:
         path: "{{ homebrew_brewfile_dir }}/Brewfile"
       register: homebrew_brewfile

@@ -1,5 +1,5 @@
 ---
-- name: install dockutil.
+- name: Install dockutil.
   community.general.homebrew_cask:
     name: "{{ dockutil_homebrew_cask }}"
     state: present
@@ -7,15 +7,15 @@
     - Clear homebrew cache
   when: dockutil_install
 
-- name: remove configured Dock items.
+- name: Remove configured Dock items.
   ansible.builtin.include_tasks: dock-remove.yml
   loop: "{{ dockitems_remove }}"
 
-- name: ensure required dock items exist.
+- name: Ensure required dock items exist.
   ansible.builtin.include_tasks: dock-add.yml
   loop: "{{ dockitems_persist }}"
 
-- name: ensure dock items are in correct position.
+- name: Ensure dock items are in correct position.
   ansible.builtin.include_tasks: dock-position.yml
   when:
     - item.pos is defined
