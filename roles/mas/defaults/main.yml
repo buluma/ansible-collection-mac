@@ -4,12 +4,12 @@ mas_password: ""
 mas_uninstalled_apps: []
 mas_installed_app_ids: []  # Deprecated
 mas_installed_apps:
-  - { id: 409203825, name: "Numbers (12.1)" }
-  - { id: 462062816, name: "Microsoft PowerPoint (16.63.1)" }
-  - { id: 1475387142, name: "Tailscale (1.28.0)" }
-  - { id: 409183694, name: "Keynote (12.1)" }
-  - { id: 462058435, name: "Microsoft Excel (16.63.1)" }
-  - { id: 1432731683, name: "Adblock Plus (2.2)" }
+  - {id: 409203825, name: "Numbers (12.1)"}
+  - {id: 462062816, name: "Microsoft PowerPoint (16.63.1)"}
+  - {id: 1475387142, name: "Tailscale (1.28.0)"}
+  - {id: 409183694, name: "Keynote (12.1)"}
+  - {id: 462058435, name: "Microsoft Excel (16.63.1)"}
+  - {id: 1432731683, name: "Adblock Plus (2.2)"}
   - {id: 497799835, name: "Xcode (8.1)"}
 mas_upgrade_all_apps: false
 mas_signin_dialog: false
