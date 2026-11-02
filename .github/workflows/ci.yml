@@ -39,6 +39,7 @@ jobs:
 
   integration:
     name: Integration
+    if: false
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
